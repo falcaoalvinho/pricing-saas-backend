@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   db:
-    image: postgres: 15
+    image: postgres:15
     container_name: pricing_db
     restart: always
     environment:
@@ -14,18 +14,18 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-    api:
-      build: .
-      container_name: pricing_api
-      restart: always
-      depends_on:
-        - db
-      environment:
-        DATABASE_URL: postgresql://postgres:postgres@db:5432/pricing_db
-      ports:
-        - "8000:8000"
-      volumes:
-        - .:/app
+  api:
+    build: .
+    container_name: pricing_api
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/pricing_db
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
 
-  volumes:
-    postgres_data
+volumes:
+  postgres_data:
