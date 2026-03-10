@@ -13,10 +13,14 @@ def get_db():
     finally:
         db.close()
 
-@router.get("/", response_model=UserListResponse)
-def get_users(db: Session = Depends(get_db)):
-    return user_service.read_users(db) 
-
 @router.post("/", response_model=UserResponse)
 def create_product(user: UserCreate, db: Session = Depends(get_db)):
     return user_service.create_user(db, user)
+
+@router.get("/", response_model=UserListResponse)
+def get_user_list(db: Session = Depends(get_db)):
+    return user_service.read_user_list(db) 
+
+@router.get("/{user_id}", response_model=UserResponse)
+async def get_user(user_id: int, db: Session = Depends(get_db)):
+    return user_service.read_user(db, user_id)
