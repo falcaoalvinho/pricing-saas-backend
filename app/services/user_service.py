@@ -5,3 +5,8 @@ def create_user(db, user_data):
         db,
         user_data,
     )
+
+def read_users(db):
+    return user_repository.read_users(
+        db
+    )
