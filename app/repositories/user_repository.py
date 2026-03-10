@@ -14,3 +14,8 @@ def create_user(db: Session, user_data):
     db.refresh(user)
 
     return user
+
+# Add pagination later
+def read_users(db: Session):
+    response = db.query(User).all()
+    return {"users": response}
