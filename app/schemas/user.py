@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 
 class UserCreate(BaseModel):
     name: str
@@ -16,3 +16,9 @@ class UserResponse(BaseModel):
 
 class UserListResponse(BaseModel):
     users: List[UserResponse]
+
+class UserUpdate(BaseModel):
+    name: Optional[str] = None
+    email: Optional[str] = None
+    is_active: Optional[bool] = None
+
