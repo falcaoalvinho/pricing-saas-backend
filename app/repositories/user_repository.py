@@ -16,6 +16,9 @@ def create_user(db: Session, user_data):
     return user
 
 # Add pagination later
-def read_users(db: Session):
+def read_user_list(db: Session):
     response = db.query(User).all()
     return {"users": response}
+
+def read_user(db, user_id):
+    return db.query(User).filter(User.id == user_id).first()
