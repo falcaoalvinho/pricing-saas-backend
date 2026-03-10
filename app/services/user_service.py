@@ -6,7 +6,11 @@ def create_user(db, user_data):
         user_data,
     )
 
-def read_users(db):
-    return user_repository.read_users(
-        db
-    )
+def read_user_list(db):
+    return user_repository.read_user_list(db)
+
+def read_user(db, user_id):
+    return user_repository.read_user(
+        db,
+        user_id
+        )
