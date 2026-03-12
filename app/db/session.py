@@ -16,5 +16,8 @@ def get_db():
     db = SessionLocal()
     try:
         yield db
+    except:
+        session.rollback()
+        raise
     finally:
         db.close()
