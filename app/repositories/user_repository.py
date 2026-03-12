@@ -15,10 +15,11 @@ def create_user(db: Session, user_data):
 
     return user
 
-# Add pagination later
+# TODO add: pagination later
 def read_user_list(db: Session):
     response = db.query(User).all()
     return {"users": response}
+
 
 def read_user(db: Session, user_id: int):
     return db.query(User).filter(User.id == user_id).first()
@@ -36,3 +37,12 @@ def update_user(db: Session, user_id: int, new_data: dict):
     db.refresh(user)
 
     return user
+
+# TODO add: security commands
+def delete_user(db: Session, user_id: int):
+    user = db.query(User).filter(User.id == user_id).first()
+
+    db.delete(user)
+    db.commit()
+
+    return read_user_list(db)
