@@ -32,7 +32,6 @@ def update_user(db: Session, user_id: int, new_data: dict):
     for key, value in data.items():
         setattr(user, key, value)
 
-    db.add(user)
     db.commit()
     db.refresh(user)
 

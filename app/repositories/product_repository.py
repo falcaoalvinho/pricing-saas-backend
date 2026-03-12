@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+
 from app.models.product import Product
 
 def create_product(db: Session, product_data, suggested_price):
@@ -13,8 +14,9 @@ def create_product(db: Session, product_data, suggested_price):
     db.commit()
     db.refresh(product)
 
-    return product
+    return read_product_list(db)
 
+# TODO: add pagination on return
 def read_product_list(db):
     response = db.query(Product).all()
     return {"products": response}
@@ -24,14 +26,13 @@ def read_product(db, product_id):
 
 def update_product(db, product_id, new_data, new_suggested_price):
     data = new_data.model_dump(exclude_unset=True)
-    data["sugested_price"] == new_suggested_price
-
-    product = db.query(product).filter(product.id == product_id).first()
+    data["suggested_price"] = new_suggested_price
+    
+    product = db.query(Product).filter(Product.id == product_id).first()
 
     for key, value in data.items():
         setattr(product, key, value)
 
-    db.add(product)
     db.commit()
     db.refresh(product)
 
