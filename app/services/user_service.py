@@ -14,3 +14,6 @@ def read_user(db, user_id):
 
 def update_user(db, user_id, new_data):
     return user_repository.update_user(db, user_id, new_data)
+
+def delete_user(db, user_id):
+    return user_repository.delete_user(db, user_id)
