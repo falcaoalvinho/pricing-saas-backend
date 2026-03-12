@@ -27,7 +27,7 @@ def update_product(db, new_data, product_id):
         product_data.cost,
         product_data.margin_percentage
     )
-    return product_repository.update_product(db, new_data, product_id, new_suggested_price)
+    return product_repository.update_product(db, product_id, new_data, new_suggested_price)
 
 def delete_product(db, product_id):
     return product_repository.delete_product(db, new_data)
