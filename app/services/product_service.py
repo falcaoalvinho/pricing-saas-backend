@@ -5,7 +5,7 @@ def calculate_price(cost, margin):
 
 
 def create_product(db, product_data):
-    price = calculate_price(
+    suggested_price = calculate_price(
         product_data.cost,
         product_data.margin_percentage
     )
@@ -13,5 +13,16 @@ def create_product(db, product_data):
     return product_repository.create_product(
         db,
         product_data,
-        price
+        suggested_price
     )
+
+def read_product_list(db):
+    ...
+
+def read_product(db, product_id):
+    ...
+
+def update_product(db, new_data, product_id):
+    ...
+
+def delete_product(db, product_id)
