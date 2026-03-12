@@ -9,7 +9,7 @@ router = APIRouter(prefix="/products")
 
 db = get_db()
 
-@router.post("/")
+@router.post("/", response_model=ProductListResponse)
 def create_product(product: ProductCreate, db: Session = Depends(get_db)):
     return product_service.create_product(db, product)
 
@@ -18,13 +18,25 @@ def get_product_list(db: Session = Depends(get_db)):
     return product_service.read_product_list(db)
 
 @router.get("/{product_id}", response_model=ProductResponse)
-def get_product(user_id: int, db: Session = Depends(get_db)):
-    return product_service.read_product(db, user_id)
+def get_product(product_id: int, db: Session = Depends(get_db)):
+    return product_service.read_product(db, product_id)
     
 @router.put("/{product_id}", response_model=ProductResponse)
-def update_product(user_id: int, new_data: UserUpdate, db: Session = Depends(get_db)):
-    return product_service.update_product(db, user_id, new_data)
+def update_product(product_id: int, new_data: ProductUpdate, db: Session = Depends(get_db)):
+    return product_service.update_product(db, product_id, new_data)
+
+# sketch of patch requisition route
+# @router.put("/{product_id}", response_model=ProductResponse)
+# def update_product(product_id: int, new_data: ProductUpdate, db: Session = Depends(get_db)):
+#     # return product_service.update_product(db, product_id, new_data)
+#         return product_service.update_product(
+#         db=db,
+#         product_id=product_id,
+#         name=new_data.name,
+#         cost=new_data.cost,
+#         margin_percentage=new_data.margin_percentage,
+#         )
     
-@router.delete("/{product_id}", response_model=ProductResponse)
+@router.delete("/{product_id}", response_model=ProductListResponse)
 def delete_product(product_id: int, db: Session = Depends(get_db)):
     return product_service.delete_product(db, product_id)
