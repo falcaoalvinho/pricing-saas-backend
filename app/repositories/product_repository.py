@@ -14,3 +14,16 @@ def create_product(db: Session, product_data, suggested_price):
     db.refresh(product)
 
     return product
+
+
+def read_product_list(db):
+    ...
+
+def read_product(db, product_id):
+    ...
+
+def update_product(db, product_id, new_data, new_suggested_price):
+    ...
+
+def delete_product(db, product_id):
+    ...
