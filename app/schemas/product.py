@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 class ProductCreate(BaseModel):
     name: str
@@ -9,7 +9,6 @@ class ProductCreate(BaseModel):
 class ProductResponse(BaseModel):
     id: int
     name: str
-    name: str
     cost: float
     margin: float
     suggested_price: float
@@ -17,3 +16,7 @@ class ProductResponse(BaseModel):
 class ProductListResponse(BaseModel):
     products: List[ProductResponse]
 
+class ProductUpdate(BaseModel):
+    name: Optional[str] = None
+    cost: Optional[float] = None
+    margin: Optional[float] = None
