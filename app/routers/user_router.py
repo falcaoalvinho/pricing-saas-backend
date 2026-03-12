@@ -29,3 +29,7 @@ async def get_user(user_id: int, db: Session = Depends(get_db)):
 @router.put("/{user_id}", response_model=UserResponse)
 def update_user(user_id: int, new_data: UserUpdate, db: Session = Depends(get_db)):
     return user_service.update_user(db, user_id, new_data)
+
+@router.delete("/{user_id}", response_model=UserListResponse)
+def delete_user(user_id: int, db: Session = Depends(get_db)):
+    return user_service.delete_user(db, user_id)
