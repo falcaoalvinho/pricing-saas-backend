@@ -17,7 +17,7 @@ def get_db():
     try:
         yield db
     except:
-        session.rollback()
+        db.rollback()
         raise
     finally:
         db.close()
