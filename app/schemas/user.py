@@ -2,15 +2,15 @@ from pydantic import BaseModel
 from datetime import datetime
 from typing import List, Optional
 
-class UserCreate(BaseModel):
+class UserBase(BaseModel):
     name: str
     email: str
+
+class UserCreate(UserBase):
     password: str
 
-class UserResponse(BaseModel):
+class UserResponse(UserBase):
     id: int
-    name: str
-    email: str
     is_active: bool
     created_at: datetime
 

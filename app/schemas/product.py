@@ -1,20 +1,19 @@
 from typing import List, Optional
 from pydantic import BaseModel
 
-class ProductCreate(BaseModel):
-    user_id: int
+class ProductBase(BaseModel):
     name: str
     cost: float
     margin_percentage: float
 
-class ProductResponse(BaseModel):
+class ProductCreate(ProductBase):
+    user_id: int
+
+class ProductResponse(ProductBase):
     id: int
-    name: str
-    cost: float
-    margin_percentage: float
     suggested_price: float
 
-class ProductListResponse(BaseModel):
+class ProductListResponse(ProductBase):
     products: List[ProductResponse]
 
 class ProductUpdate(BaseModel):
