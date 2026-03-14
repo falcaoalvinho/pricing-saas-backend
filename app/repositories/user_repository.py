@@ -18,7 +18,7 @@ def create_user(db: Session, user_data):
 # TODO add: pagination later
 def read_user_list(db: Session):
     response = db.query(User).all()
-    return {"users": response}
+    return response
 
 
 def read_user(db: Session, user_id: int):

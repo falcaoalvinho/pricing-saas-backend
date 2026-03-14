@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 from pydantic import BaseModel
 
 class ProductBase(BaseModel):
@@ -12,9 +12,6 @@ class ProductCreate(ProductBase):
 class ProductResponse(ProductBase):
     id: int
     suggested_price: float
-
-class ProductListResponse(ProductBase):
-    products: List[ProductResponse]
 
 class ProductUpdate(BaseModel):
     name: Optional[str] = None

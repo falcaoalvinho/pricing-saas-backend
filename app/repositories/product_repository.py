@@ -20,7 +20,7 @@ def create_product(db: Session, product_data, suggested_price):
 # TODO: add pagination on return
 def read_product_list(db):
     response = db.query(Product).all()
-    return {"products": response}
+    return response
 
 def read_product(db, product_id):
     return db.query(Product).filter(Product.id == product_id).first()

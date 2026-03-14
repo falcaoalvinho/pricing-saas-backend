@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from datetime import datetime
-from typing import List, Optional
+from typing import Optional
 
 class UserBase(BaseModel):
     name: str
@@ -13,9 +13,6 @@ class UserResponse(UserBase):
     id: int
     is_active: bool
     created_at: datetime
-
-class UserListResponse(BaseModel):
-    users: List[UserResponse]
 
 class UserUpdate(BaseModel):
     name: Optional[str] = None

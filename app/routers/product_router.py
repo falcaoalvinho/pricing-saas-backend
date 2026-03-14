@@ -21,7 +21,7 @@ def create_product(product: ProductCreate, db: Session = Depends(get_db)):
     "/",
     summary="Read all products",
     description="Retorna todos os registros ta tabela products",
-    response_model=ProductListResponse)
+    response_model=list[ProductResponse])
 def get_product_list(db: Session = Depends(get_db)):
     return product_service.read_product_list(db)
 
