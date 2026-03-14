@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, Boolean
-from app.db.base import Base
+from sqlalchemy import Column, Integer, String, Float, DateTime, Boolean, ForeignKey
+from sqlalchemy.orm import relationship
 from datetime import datetime
+from app.db.base import Base
 
 class User(Base):
     __tablename__ = "users"
@@ -11,3 +12,5 @@ class User(Base):
     hashed_password = Column(String, nullable=False) 
     is_active = Column(Boolean, nullable=False, default=False)
     created_at = Column(DateTime, default=datetime.now)
+
+    products = relationship("Product", back_populates="owner")

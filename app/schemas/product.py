@@ -2,6 +2,7 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 class ProductCreate(BaseModel):
+    user_id: int
     name: str
     cost: float
     margin_percentage: float

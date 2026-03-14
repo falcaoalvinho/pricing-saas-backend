@@ -4,6 +4,7 @@ from app.models.product import Product
 
 def create_product(db: Session, product_data, suggested_price):
     product = Product(
+        user_id=product_data.user_id,
         name=product_data.name,
         cost=product_data.cost,
         margin_percentage=product_data.margin_percentage,
