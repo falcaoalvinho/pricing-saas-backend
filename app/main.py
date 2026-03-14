@@ -6,10 +6,15 @@ from app.routers.user_router import router as user_router
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(
+    title="Pricing API",
+    description="API para cálculo e gerenciamento de preços com base em custo e margem.",
+    version="1.0.0"
+)
+
 app.include_router(product_router)
 app.include_router(user_router)
 
-@app.get("/")
+@app.get("/", summary="Default", description="Serve para saber se a API está rodando")
 def read_root():
     return {"message": "API running"}
