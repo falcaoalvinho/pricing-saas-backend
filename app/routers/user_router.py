@@ -13,7 +13,7 @@ db = get_db()
     "/",
     summary="Create user",
     description="Cria uma instância da entidade user no banco de dados",
-    response_model=list(UserResponse))
+    response_model=list[UserResponse])
 def create_product(user: UserCreate, db: Session = Depends(get_db)):
     return user_service.create_user(db, user)
 
@@ -21,7 +21,7 @@ def create_product(user: UserCreate, db: Session = Depends(get_db)):
     "/",
     summary="Read all users",
     description="Retorna todos os registros ta tabela users",
-    response_model=list(UserResponse))
+    response_model=list[UserResponse])
 def get_user_list(db: Session = Depends(get_db)):
     return user_service.read_user_list(db) 
 
@@ -46,6 +46,6 @@ def update_user(user_id: int, new_data: UserUpdate, db: Session = Depends(get_db
     "/?user_id={user_id}",
     summary="Delete user",
     description="Recebe um id, e deleta o registro com o respectivo id",
-    response_model=UserListResponse)
+    response_model=list[UserResponse])
 def delete_user(user_id: int, db: Session = Depends(get_db)):
     return user_service.delete_user(db, user_id)

@@ -13,7 +13,7 @@ db = get_db()
     "/",
     summary="Create prouduct",
     description="Cria uma instância da entidade product no banco de dados, calculando automaticamente o suggested_price",
-    response_model=list(ProductResponse))
+    response_model=list[ProductResponse])
 def create_product(product: ProductCreate, db: Session = Depends(get_db)):
     return product_service.create_product(db, product)
 
@@ -45,7 +45,7 @@ def update_product(product_id: int, new_data: ProductUpdate, db: Session = Depen
     "/?product_id={product_id}",
     summary="Delete product",
     description="Recebe um id, e deleta o registro com o respectivo id",
-    response_model=ProductListResponse)
+    response_model=list[ProductResponse])
 def delete_product(product_id: int, db: Session = Depends(get_db)):
     return product_service.delete_product(db, product_id)
 
