@@ -13,7 +13,7 @@ def create_user(db: Session, user_data):
     db.commit()
     db.refresh(user)
 
-    return user
+    return read_user_list(db)
 
 # TODO add: pagination later
 def read_user_list(db: Session):

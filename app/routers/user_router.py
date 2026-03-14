@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from app.schemas.user import UserCreate, UserResponse, UserListResponse, UserUpdate
+from app.schemas.user import UserCreate, UserResponse, UserUpdate
 from app.db.session import SessionLocal, get_db
 from app.services import user_service
 
@@ -13,7 +13,7 @@ db = get_db()
     "/",
     summary="Create user",
     description="Cria uma instância da entidade user no banco de dados",
-    response_model=UserResponse)
+    response_model=list(UserResponse))
 def create_product(user: UserCreate, db: Session = Depends(get_db)):
     return user_service.create_user(db, user)
 

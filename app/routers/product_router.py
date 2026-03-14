@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from app.schemas.product import ProductCreate, ProductListResponse, ProductResponse, ProductUpdate
+from app.schemas.product import ProductCreate, ProductResponse, ProductUpdate
 from app.db.session import SessionLocal, get_db
 from app.services import product_service
 
@@ -13,7 +13,7 @@ db = get_db()
     "/",
     summary="Create prouduct",
     description="Cria uma instância da entidade product no banco de dados, calculando automaticamente o suggested_price",
-    response_model=ProductListResponse)
+    response_model=list(ProductResponse))
 def create_product(product: ProductCreate, db: Session = Depends(get_db)):
     return product_service.create_product(db, product)
 
