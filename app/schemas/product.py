@@ -6,9 +6,6 @@ class ProductBase(BaseModel):
     cost: float
     margin_percentage: float
 
-class ProductCreate(ProductBase):
-    user_id: int
-
 class ProductResponse(ProductBase):
     id: int
     suggested_price: float
