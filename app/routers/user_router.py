@@ -26,7 +26,7 @@ def get_user_list(db: Session = Depends(get_db)):
     return user_service.read_user_list(db) 
 
 @router.get(
-    "/?user_id={user_id}",
+    "/{user_id}",
     summary="Read user",
     description="Recebe o id e retorna os dados do respectivo user",
     response_model=UserResponse
@@ -35,7 +35,7 @@ def get_user(user_id: int, db: Session = Depends(get_db)):
     return user_service.read_user(db, user_id)
 
 @router.put(
-    "/?user_id={user_id}",
+    "/{user_id}",
     summary="Update user",
     description="Recebe um novo conjunto de dados e um id, e se eles forem diferentes altera no registro com o respectivo id",
     response_model=UserResponse)
@@ -43,7 +43,7 @@ def update_user(user_id: int, new_data: UserUpdate, db: Session = Depends(get_db
     return user_service.update_user(db, user_id, new_data)
 
 @router.delete(
-    "/?user_id={user_id}",
+    "/{user_id}",
     summary="Delete user",
     description="Recebe um id, e deleta o registro com o respectivo id",
     response_model=list[UserResponse])
