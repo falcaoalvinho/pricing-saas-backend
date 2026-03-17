@@ -28,12 +28,6 @@ def read_product(db, product_id, current_user):
 
     if product == None:
         raise HTTPException(status_code=404, detail="Produto não encontrado")
-    
-    if product.user_id == current_user.id:
-        return product
-    
-    else:
-        raise HTTPException(status_code=404, detail="O usuário não é dono do produto")
 
 def update_product(db, product_id, new_data, new_suggested_price, current_user):
     product = db.query(Product).filter(Product.id == product_id).first()
@@ -44,7 +38,6 @@ def update_product(db, product_id, new_data, new_suggested_price, current_user):
     if product.user_id == current_user.id:
         data = new_data.model_dump(exclude_unset=True)
         data["suggested_price"] = new_suggested_price
-        
 
         for key, value in data.items():
             setattr(product, key, value)
@@ -53,8 +46,6 @@ def update_product(db, product_id, new_data, new_suggested_price, current_user):
         db.refresh(product)
 
         return product
-    else:
-        raise HTTPException(status_code=404, detail="O usuário não é dono do produto")
 
 def delete_product(db, product_id, current_user):
     product = db.query(Product).filter(Product.id == product_id).first()
@@ -67,6 +58,3 @@ def delete_product(db, product_id, current_user):
         db.commit()
 
         return read_product_list(db, current_user)
-    
-    else:
-        raise HTTPException(status_code=404, detail="O usuário não é dono do produto")
