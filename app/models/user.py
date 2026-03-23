@@ -13,6 +13,5 @@ class User(Base):
     is_active = Column(Boolean, nullable=False, default=False)
     created_at = Column(DateTime, default=datetime.now)
 
-
     memberships = relationship("Membership" back_populates="user")
     organizations = relationship("Organization", back_populates="owner")
