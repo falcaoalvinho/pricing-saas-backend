@@ -6,11 +6,13 @@ from app.db.base import Base
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, nullable=False)
-    email = Column(String, nullable=False, unique=True)
-    hashed_password = Column(String, nullable=False) 
+    id = Column(Integer, primary_key=True)
+    name = Column(String(100), nullable=False)
+    email = Column(String(100), nullable=False, unique=True, index=True)
+    hashed_password = Column(String(100), nullable=False) 
     is_active = Column(Boolean, nullable=False, default=False)
     created_at = Column(DateTime, default=datetime.now)
 
-    products = relationship("Product", back_populates="owner")
+
+    memberships = relationship("Membership" back_populates="user")
+    organizations = relationship("Organization", back_populates="owner")
