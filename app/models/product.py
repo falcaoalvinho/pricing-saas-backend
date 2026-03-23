@@ -6,7 +6,7 @@ class Product(Base):
     __tablename__ = "products"
 
     id = Column(Integer, primary_key=True)
-    organization_id = Column(Integer, ForeignKey("organizations.id"))
+    organization_id = Column(Integer, ForeignKey("organizations.id"), nullable=False)
     name = Column(String(100), nullable=False)
     cost = Column(Float, nullable=False)
     margin_percentage = Column(Float, nullable=False)

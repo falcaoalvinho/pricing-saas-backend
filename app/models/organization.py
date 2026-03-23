@@ -8,7 +8,7 @@ class Organization(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False)
     slug = Column(String(255), nullable=False, unique=True)
-    owner_id = Column(Integer, ForeignKey(user.id) nullable=False)
+    owner_id = Column(Integer, ForeignKey(user.id), nullable=False)
     created_at = Column(Datetime, default=datetime.now)
 
     owner = relationship("Owner", back_populates="organizations")

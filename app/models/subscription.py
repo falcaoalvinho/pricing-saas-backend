@@ -7,7 +7,7 @@ class Subscription(Base):
     __tablename__ = "subscriptions"
 
     id = Column(Integer, primary_key=True)
-    organization_id = Column(Integer, ForeignKey("organizations.id"), nullable=False)
+    organization_id = Column(Integer, ForeignKey("organizations.id"), unique=True, nullable=False)
 
     plan = Column(String, default="basic", nullable=False)
     status = Column(String, default="active", nullable=False)
