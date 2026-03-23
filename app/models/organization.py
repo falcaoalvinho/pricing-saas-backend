@@ -11,10 +11,8 @@ class Organization(Base):
     owner_id = Column(Integer, ForeignKey(user.id) nullable=False)
     created_at = Column(Datetime, default=datetime.now)
 
+    owner = relationship("Owner", back_populates="organizations")
+    subscription = relationship("Subscription", back_populates="organization")
+    
+    memberships = relationship("Members", back_populates="organization")
     products = relationship("Product", back_populates="owner")
-
-id: int (PK)
-name: str
-slug: str (unique)
-owner_id: int (FK → users.id)
-created_at: datetime
