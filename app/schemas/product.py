@@ -7,7 +7,7 @@ class ProductBase(BaseModel):
     margin_percentage: float
 
 class ProductCreate(ProductBase):
-    organization_id: 
+    organization_id: int
 
 class ProductResponse(ProductBase):
     id: int

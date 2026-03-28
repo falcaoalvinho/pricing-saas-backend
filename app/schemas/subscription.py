@@ -10,6 +10,12 @@ class SubscriptionCreate(SubscriptionBase):
     organization_id: int
     expires_at: Optional[str] = None
 
+class SubscriptionResponse(SubscriptionBase):
+    id: int
+    organization_id: int
+    started_at: datetime
+    expires_at: datetime
+
 class SubscriptionUpdate(BaseModel):
     plan: Optional[str] = None
     status: Optional[str] = None
