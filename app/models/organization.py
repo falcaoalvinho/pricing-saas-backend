@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, Float, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
+from datetime import datetime
 from app.db.base import Base
 
 class Organization(Base):
@@ -8,8 +9,8 @@ class Organization(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False)
     slug = Column(String(255), nullable=False, unique=True)
-    owner_id = Column(Integer, ForeignKey(user.id), nullable=False)
-    created_at = Column(Datetime, default=datetime.now)
+    owner_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    created_at = Column(DateTime, default=datetime.now)
 
     owner = relationship("Owner", back_populates="organizations")
     subscription = relationship("Subscription", back_populates="organization")
