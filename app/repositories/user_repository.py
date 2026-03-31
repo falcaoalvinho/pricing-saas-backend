@@ -11,7 +11,6 @@ def create_user(db: Session, user_data):
 
     db.add(user)
     db.commit()
-    db.refresh(user)
 
     return read_user_list(db)
 
