@@ -12,8 +12,8 @@ class Organization(Base):
     owner_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     created_at = Column(DateTime, default=datetime.now)
 
-    owner = relationship("Owner", back_populates="organizations")
+    owner = relationship("User", back_populates="organizations")
     subscription = relationship("Subscription", back_populates="organization")
     
-    memberships = relationship("Members", back_populates="organization")
+    memberships = relationship("Membership", back_populates="organization")
     products = relationship("Product", back_populates="owner")

@@ -5,6 +5,7 @@ from app.models.user import User
 from app.models.organization import Organization
 from app.models.membership import Membership
 from app.models.product import Product
+from app.models.subscription import Subscription
 
 from app.db.session import engine
 from app.routers.product_router import router as product_router

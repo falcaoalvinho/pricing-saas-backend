@@ -14,7 +14,6 @@ def create_product(db: Session, product_data, suggested_price, current_user):
 
     db.add(product)
     db.commit()
-    db.refresh(product)
 
     return read_product_list(db, current_user)
 
@@ -28,6 +27,8 @@ def read_product(db, product_id, current_user):
 
     if product == None:
         raise HTTPException(status_code=404, detail="Produto não encontrado")
+    
+    return product
 
 def update_product(db, product_id, new_data, new_suggested_price, current_user):
     product = db.query(Product).filter(Product.id == product_id).first()

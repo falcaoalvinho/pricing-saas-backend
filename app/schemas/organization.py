@@ -6,9 +6,6 @@ class OrganizationBase(BaseModel):
     name : str
     slug: str
 
-class OrganizationCreate(OrganizationBase):
-    owner_id: int
-
 class OrganizationResponse(OrganizationBase):
     id: int
     owner_id: int
@@ -17,3 +14,6 @@ class OrganizationResponse(OrganizationBase):
 class OrganizationUpdate(BaseModel):
     name: Optional[str] = None
     slug: Optional[str] = None
+
+# class OrganizationCreate(OrganizationBase):
+    
