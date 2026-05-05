@@ -5,7 +5,7 @@ from datetime import datetime
 class MembershipBase(BaseModel):
     role: str
 
-class MembershipCreate(MembershipBase):
+class MembershipCreate(BaseModel):
     user_id: int
     organization_id: int
 
@@ -17,6 +17,9 @@ class MembershipResponse(MembershipBase):
     created_at: datetime
 
 class MembershipUpdate(BaseModel):
+    role: Optional[str] = None
+
+class MembershipPatch(BaseModel):
     role: Optional[str] = None
 
     

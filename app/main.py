@@ -25,10 +25,10 @@ app = FastAPI(
 
 app.include_router(auth_router)
 app.include_router(user_router)
-app.include_router(product_router)
-app.include_router(subscription_router)
 app.include_router(organization_router)
 app.include_router(membership_router)
+app.include_router(subscription_router)
+app.include_router(product_router)
 
 # @app.get("/", summary="Default", tags=["Default"], description="Serve para saber se a API está rodando")
 # def read_root():
