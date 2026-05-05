@@ -20,7 +20,7 @@ def read_organization_list(db, current_user):
     return organizations
 
 def read_organization(db, organization_id, current_user):
-    organization = db.query(Organization).filter(Organization.owner_id == current_user.id).filter(Organization.owner_id == organization_id).first()
+    organization = db.query(Organization).filter(Organization.owner_id == current_user.id).filter(Organization.id == organization_id).first()
 
     if organization == None:
         raise HTTPException(status_code=404, detail="Organização não encontrada")
