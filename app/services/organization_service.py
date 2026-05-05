@@ -1,16 +1,42 @@
-from app.repositories import organization_repository
+"""
+TODO:
+ - Escrever docstrings de todas as funções
+ - Paginação de requests com grandes quantidades de dados
+"""
+
+# DEPENDENCIES IMPORTS
 from fastapi import HTTPException
 
+# PROJECT IMPORTS
+from app.repositories import organization_repository
+
+
+
+# FUNCTIONS
 def create_organization(db, organization_data, current_user):
+    """
+    """
     return organization_repository.create_organization(db, organization_data, current_user)
 
+
+
 def read_organization_list(db, current_user):
+    """
+    """
     return organization_repository.read_organization_list(db, current_user)
 
+
+
 def read_organization(db, organization_id, current_user):
+    """
+    """
     return organization_repository.read_organization(db, organization_id, current_user)
 
+
+
 def update_organization(db, organization_id, new_data, current_user):
+    """
+    """
     organization = read_organization(db, organization_id, current_user)
 
     if organization.owner_id == current_user.id:
@@ -19,7 +45,11 @@ def update_organization(db, organization_id, new_data, current_user):
     else:
         raise HTTPException(status_code=404, detail="A organização não pertence ao usuário!")
 
+
+
 def delete_organization(db, organization_id, current_user):
+    """
+    """
     organization = read_organization(db, organization_id, current_user)
     
     if organization.owner_id == current_user.id:

@@ -1,8 +1,16 @@
-from app.repositories.user_repository import read_user_by_email
-from app.core.security import verify_password
-from app.core.jwt import create_access_token
+# TODO: Escrever todas as docstrings das funções
 
+# PROJECT IMPORTS
+from app.core.jwt import create_access_token
+from app.core.security import verify_password
+from app.repositories.user_repository import read_user_by_email
+
+
+
+# FUNCTIONS
 def authenticate_user(db, email: str, password: str):
+    """
+    """
     user = read_user_by_email(db, email)
 
     if not user:
@@ -13,7 +21,11 @@ def authenticate_user(db, email: str, password: str):
 
     return user
 
+
+
 def login(db, email: str, password: str):
+    """
+    """
     user = authenticate_user(db, email, password)
 
     if not user:
