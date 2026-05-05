@@ -9,6 +9,8 @@ from sqlalchemy.orm import relationship
 from app.db.base import Base
 
 
+
+#MODEL
 class Organization(Base):
     """
     """

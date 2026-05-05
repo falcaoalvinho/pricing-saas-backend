@@ -1,9 +1,22 @@
-from sqlalchemy.orm import Session
-from fastapi import HTTPException
+"""
+TODO: 
+ - Escrever todas as docstrings das funções
+ - Adicionar paginação a requests que acessam muitos recursos
+"""
 
+# DEPENDENCIES IMPORTS
+from fastapi import HTTPException
+from sqlalchemy.orm import Session
+
+# PROJECT IMPORTS
 from app.models.product import Product
 
+
+
+# FUNCTIONS
 def create_product(db: Session, product_data, suggested_price, current_user):
+    """
+    """
     product = Product(
         user_id=current_user.id,
         name=product_data.name,
@@ -17,12 +30,20 @@ def create_product(db: Session, product_data, suggested_price, current_user):
 
     return read_product_list(db, current_user)
 
+
+
 # TODO: add pagination on return
 def read_product_list(db, current_user):
+    """
+    """
     response = db.query(Product).filter(Product.user_id == current_user.id)
     return response
 
+
+
 def read_product(db, product_id, current_user):
+    """
+    """
     product = db.query(Product).filter(Product.id == product_id).first()
 
     if product == None:
@@ -30,7 +51,11 @@ def read_product(db, product_id, current_user):
     
     return product
 
+
+
 def update_product(db, product_id, new_data, new_suggested_price, current_user):
+    """
+    """
     product = db.query(Product).filter(Product.id == product_id).first()
     
     if product == None:
@@ -48,7 +73,11 @@ def update_product(db, product_id, new_data, new_suggested_price, current_user):
 
         return product
 
+
+
 def delete_product(db, product_id, current_user):
+    """
+    """
     product = db.query(Product).filter(Product.id == product_id).first()
 
     if product == None:

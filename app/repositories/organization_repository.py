@@ -1,9 +1,22 @@
-from sqlalchemy.orm import Session
-from fastapi import HTTPException
+"""
+TODO: 
+ - Escrever todas as docstrings das funções
+ - Adicionar paginação a requests que acessam muitos recursos
+"""
 
+# DEPENDENCIES IMPORTS
+from fastapi import HTTPException
+from sqlalchemy.orm import Session
+
+# PROJECT IMPORTS
 from app.models.organization import Organization
 
+
+
+# FUNCTIONS
 def create_organization(db: Session, organization_data, current_user):
+    """
+    """
     organization = Organization(
         owner_id = current_user.id,
         name = organization_data.name,
@@ -15,17 +28,32 @@ def create_organization(db: Session, organization_data, current_user):
 
     return organization
 
+
+
 def read_organization_list(db, current_user):
+    """
+    """
     organizations = db.query(Organization).filter(Organization.owner_id == current_user.id)
     return organizations
 
+
+
 def read_organization(db, organization_id, current_user):
-    organization = db.query(Organization).filter(Organization.owner_id == current_user.id).filter(Organization.id == organization_id).first()
+    """
+    """
+    organization = (db
+                    .query(Organization)
+                    .filter(Organization.owner_id == current_user.id)
+                    .filter(Organization.id == organization_id)
+                    .first()
+                )
 
     if organization == None:
         raise HTTPException(status_code=404, detail="Organização não encontrada")
 
     return organization
+
+
 
 def update_organization(db, organization_id, new_data, current_user):
     organization = read_organization(db, organization_id, current_user)
@@ -39,6 +67,8 @@ def update_organization(db, organization_id, new_data, current_user):
     db.refresh(organization)
 
     return organization
+
+
 
 def delete_organization(db, organization_id, current_user):
     organization = read_organization(db, organization_id, current_user)

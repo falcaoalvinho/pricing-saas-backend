@@ -10,6 +10,7 @@ from app.db.base import Base
 
 
 
+# MODEL
 class Membership(Base):
     """
     """
