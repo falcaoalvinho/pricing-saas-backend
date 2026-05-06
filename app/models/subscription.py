@@ -1,9 +1,9 @@
 # TODO: Escrever Docsting da classe.
 
 # DEPENDENCIES IMPORTS
+from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
-from datetime import datetime
 
 # PROJECT IMPORTS
 from app.db.base import Base
