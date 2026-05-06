@@ -1,13 +1,27 @@
-from fastapi import APIRouter, Depends
-from sqlalchemy.orm import Session
+"""
+TODO: 
+ - Escrever docstrings
+ - Definir parâmetros para as funções dos endpoints
+ - Criar chamadas da layer de serviços
+ - Corigir "reponse_model"s comentados
+ - Recuperar imports comentados
+"""
 
-from app.schemas.subscription import SubscriptionCreate, SubscriptionResponse, SubscriptionUpdate
+# DEPENDENCIES IMPORTS
+from fastapi import APIRouter, Depends
+# from sqlalchemy.orm import Session
+
+# PROJECT DEPENDENCIES
 from app.db.session import get_db
+# from app.schemas.subscription import SubscriptionCreate, SubscriptionResponse, SubscriptionUpdate
+
 
 router = APIRouter(prefix="/subscription", tags=["Subscriptions"])
-
 db = get_db()
 
+
+
+# ENDPOINTS FUNCTIONS
 @router.get(
     "/",
     summary="Read subscription",
@@ -15,7 +29,11 @@ db = get_db()
     # response_model=SubscriptionResponse
 )
 def read_subscription():
+    """
+    """
     return {"mensage": "[subscription] get subscription request was awnswered successfully!"}
+
+
 
 @router.put(
     "/",
@@ -24,7 +42,11 @@ def read_subscription():
     # response_model=SubscriptionResponse
 )
 def update_subscription():
+    """
+    """
     return {"mensage": "[subscription] update subscription request was awnswered successfully!"}
+
+
 
 @router.delete(
     "/",
@@ -33,4 +55,6 @@ def update_subscription():
     # response_model=SubscriptionResponse
 )
 def delete_subscription():
+    """
+    """
     return {"mensage": "[subscription] delete subscription request was awnswered successfully!"}

@@ -1,21 +1,32 @@
+# TODO: Escrever docstrings
+
+# DEPENDENCIES IMPORTS
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from app.schemas.user import UserCreate, UserResponse, UserUpdate
+# PROJECT IMPORTS
 from app.db.session import SessionLocal, get_db
 from app.services import user_service
+from app.schemas.user import UserCreate, UserResponse, UserUpdate
+
 
 router = APIRouter(prefix="/users", tags=["Users"])
-
 db = get_db()
 
+
+
+# ENDPOINTS FUNCTIONS
 @router.post(
     "/",
     summary="Create user",
     description="Cria uma instância da entidade user no banco de dados",
     response_model=list[UserResponse])
 def create_product(user: UserCreate, db: Session = Depends(get_db)):
+    """
+    """
     return user_service.create_user(db, user)
+
+
 
 @router.get(
     "/",
@@ -23,7 +34,11 @@ def create_product(user: UserCreate, db: Session = Depends(get_db)):
     description="Retorna todos os registros ta tabela users",
     response_model=list[UserResponse])
 def get_user_list(db: Session = Depends(get_db)):
+    """
+    """
     return user_service.read_user_list(db) 
+
+
 
 @router.get(
     "/{user_id}",
@@ -32,7 +47,11 @@ def get_user_list(db: Session = Depends(get_db)):
     response_model=UserResponse
     )
 def get_user(user_id: int, db: Session = Depends(get_db)):
+    """
+    """
     return user_service.read_user(db, user_id)
+
+
 
 @router.put(
     "/{user_id}",
@@ -40,7 +59,11 @@ def get_user(user_id: int, db: Session = Depends(get_db)):
     description="Recebe um novo conjunto de dados e um id, e se eles forem diferentes altera no registro com o respectivo id",
     response_model=UserResponse)
 def update_user(user_id: int, new_data: UserUpdate, db: Session = Depends(get_db)):
+    """
+    """
     return user_service.update_user(db, user_id, new_data)
+
+
 
 @router.delete(
     "/{user_id}",
@@ -48,4 +71,6 @@ def update_user(user_id: int, new_data: UserUpdate, db: Session = Depends(get_db
     description="Recebe um id, e deleta o registro com o respectivo id",
     response_model=list[UserResponse])
 def delete_user(user_id: int, db: Session = Depends(get_db)):
+    """
+    """
     return user_service.delete_user(db, user_id)
